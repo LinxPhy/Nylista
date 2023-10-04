@@ -1,6 +1,7 @@
 import './login.css'
-import Reading from '../../assets/reading_book.webp'
+import { useAuth0 } from '@auth0/auth0-react'
 import Book from '../../assets/book_image.jpg'
+import LoginButton from '../../components/loginButton'
 
 function Login() {
 
@@ -20,9 +21,8 @@ function Login() {
                 <p className='form-description'>
                     To get started, please press the button below
                 </p>
-                <button className='buttonStyle1'>
-                    Sign In
-                </button>
+                
+                <LoginButton />
 
                 <span className='title'>
                     Nylista

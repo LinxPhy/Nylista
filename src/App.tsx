@@ -1,14 +1,41 @@
 import './styles/App.css'
+
+import { Routes, Route } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+import Login from './pages/login/login'
+import Homepage from './pages/homepage/homepage'
 import Header from './components/header'
 import Navbar from './components/navbar'
-import Login from './pages/login/login'
 
 function App() {
 
+  const { isAuthenticated, isLoading } = useAuth0()
+
+  if (!isAuthenticated) {
+    return (
+      <div className='container'>
+        <Routes>
+          <Route path='/login' element={<Login />}></Route>
+        </Routes>
+      </div>
+    )
+  }
+
+  if (isLoading) {
+    return(
+      <div>
+        <p>Loading...</p>
+      </div>
+    )
+  }
 
   return (
     <div className='container'>
-      <Login />
+      <Header />
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Homepage />}></Route>
+      </Routes>
     </div>
   )
 }

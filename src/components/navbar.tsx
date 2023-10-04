@@ -13,12 +13,9 @@ const Navbar = () => {
             </div>
 
             <div>
-
-                <h6>Topics</h6>
-
                 <ul>
                     <li><Link to={'/main'}>Main</Link></li>
-                    <li><button>Create Topic</button></li>
+                    <button className='buttonStyle1'>Create Topic</button>
                 </ul>
             </div>
         </nav>
