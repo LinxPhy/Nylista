@@ -31,6 +31,8 @@ function Create() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+
+        
         
         setError('Please fill out all fields');
     }
@@ -105,9 +107,10 @@ function Create() {
                 <div className="form-group">
                     <label htmlFor="priority">Priority</label>
                     <select className="form-control inputStyle2" onChange={(e) => setFormData({...formData, priority: e.target.value})}>
-                        <option>Low</option>
-                        <option>Medium</option>
-                        <option>High</option>
+                        <option value={"none"}>None</option>
+                        <option value={"low"}>Low</option>
+                        <option value={"medium"}>Medium</option>
+                        <option value={"high"}>High</option>
                     </select>
                 </div>
 
@@ -119,9 +122,12 @@ function Create() {
                 <div className="form-group">
                     <label htmlFor="status">Status</label>
                     <select className="form-control inputStyle2" onChange={(e) => setFormData({...formData, status: e.target.value})}>
-                        <option>Open</option>
-                        <option>In Progress</option>
-                        <option>Completed</option>
+                        <option value={"new"}>New</option>
+                        <option value={"open"}>Open</option>
+                        <option value={"in-progress"}>In progress</option>
+                        <option value={"cancelled"}>Cancelled</option>
+                        <option value={"completed"}>Completed</option>
+                        <option value={"closed"}>Closed</option>
                     </select>
                 </div>
 

@@ -7,9 +7,9 @@ const app = express();
 const { auth } = require('express-oauth2-jwt-bearer');
 
 const jwtCheck = auth({
-  audience: 'nylista',
-  issuerBaseURL: 'https://nylista.uk.auth0.com/',
-  tokenSigningAlg: 'RS256'
+  audience: process.env.AUDIENCE,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
+  tokenSigningAlg: process.env.TOKEN_SIGNING_ALGORITHM
 });
 
 //app.use(cors());
@@ -18,6 +18,25 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.set('trust proxy', false)
 
-app.listen(port);
 
-console.log('Running on port ', process.env.PORT || 3000);
+app.post('/createPost', (req, res) => {
+
+  const formData = req.body;
+  
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+app.listen(port, () => {
+  console.log('Server Started ', process.env.PORT || 3000);
+});
