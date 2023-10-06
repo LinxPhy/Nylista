@@ -24,7 +24,7 @@ function App() {
   // }
 
   if (isLoading) {
-    return(
+    return (
       <div>
         <p>Loading...</p>
       </div>
@@ -32,17 +32,20 @@ function App() {
   }
 
   return (
-    <div className='container'>
+    <>
       <Header />
       <main>
-      <Navbar />
-        <Routes>
-          <Route path="*" element={<div> Not Found or You do not have permission.</div>}/>
-          <Route path='/' element={<Homepage />} />
-          <Route path='/create' element={<Create />} />
-        </Routes>
+        <Navbar />
+        <div className='container'>
+          <Routes>
+            <Route path="*" element={<div> Not Found or You do not have permission.</div>} />
+            <Route path='/' element={<Homepage />} />
+            <Route path='/create' element={<Create />} />
+          </Routes>
+        </div>
       </main>
-    </div>
+    </>
+
   )
 }
 

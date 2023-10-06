@@ -1,0 +1,110 @@
+
+.Create{
+    width: 100%;
+}
+
+.Create form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.Create label{
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--primary_colour);
+    position: relative;
+    left: 5px;
+    text-transform: uppercase ;
+}
+
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-group-tags{
+    position: relative;
+}
+
+.form-group-tags div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.form-group-tags button{
+    position: absolute;
+    bottom: 28.5px;
+    right: 5px;
+}
+
+.Create input, .Create textarea{
+    width: 100%;
+}
+
+.Create ::placeholder {
+    color: black;
+    opacity: 1; 
+}
+
+.Create select{
+    width: 200px;
+}
+
+.form-group span{
+    font-size: 0.8em;
+    position: relative;
+    top: -5px;
+    left: 3px;
+}
+
+.Create input, .Create textarea, .Create select{
+    height: 45px;
+    border-radius: 0px;
+    border: 1.5px solid black;
+    padding: 10px 20px;
+}
+
+.form-group-tags input{
+    padding-right: 50px;
+}
+
+
+.Create textarea{
+    min-height: 100px;
+    height: 100px;
+    resize: vertical;
+    max-height: 400px;
+}
+
+
+.Create input:focus, .Create textarea:focus, .Create select:focus{
+    outline: none;
+    border: 2.5px solid var(--primary_colour);
+}
+
+.form-group button{
+    width: 100%;
+    padding: 15px 50px;
+}
+
+.form-group-date{
+    width: 200px;
+}
+
+.tag{
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
