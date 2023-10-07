@@ -31,6 +31,23 @@ app.use(express.urlencoded({ extended: true }))
 app.set('trust proxy', false)
 
 
+app.post('/getPosts', async(req, res) => {
+
+  try{
+
+    const posts = await PostSchema.find({})
+    res.status(200).send(posts)
+
+  } catch (err){
+
+    console.log(err)
+    res.status(500).send(err)
+
+  }
+
+});
+
+
 app.post('/createPost', async(req, res) => {
 
   try{

@@ -23,7 +23,7 @@ const PostSchema = new mongoose.Schema({
     },
 
     topic: {
-        type: [String],
+        type: String,
         required: [true, 'Please select a topic'],
     },
 
@@ -38,6 +38,9 @@ const PostSchema = new mongoose.Schema({
         required: false,
         validate: {
             validator: function (value) {
+                if (!value) {
+                    return true;
+                }
                 return value > Date.now();
             },
             message: 'Due date must be in the future',

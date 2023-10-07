@@ -1,10 +1,13 @@
 import './create.css'
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { useMutation } from 'react-query'
 import Error from '../../components/error';
+import ErrorHandling from '../../components/ErrorHandling';
 import { useState, useEffect } from 'react'
 
-const handleSubmit = async (data: any) => {
+
+
+const handleSubmit = async (data: any, setError: React.Dispatch<React.SetStateAction<string>>) => {
 
     try {
 
@@ -12,23 +15,8 @@ const handleSubmit = async (data: any) => {
 
     } catch (err: any) {
 
-        console.log(err);
-
-        if (err instanceof AxiosError && err.response?.data?.errors) {
-            const errors = err.response.data.errors;
-            const new_err = (Object.values(errors) as any)[0].message as string;
-            // setError(new_err);
-            // <Error message={new_err} />
-
-        } else if (err instanceof AxiosError && err.response?.data?.error) {
-            const message = err.response.data.error.message;
-            <Error message={message} />
-
-        } else {
-            const message = 'an error has occurred';
-            <Error message={message} />
-
-        }
+        const message = ErrorHandling(err);
+        setError(message);
 
     }
 }
@@ -45,7 +33,7 @@ function Create() {
         status: 'new'
     };
 
-    const { mutate, data, status } = useMutation(handleSubmit);
+    const { mutate, data, status } = useMutation((formData: any) => handleSubmit(formData, setError));
     const [tagValue, setTagValue] = useState('');
     const [formData, setFormData] = useState(initialState);
     const [error, setError] = useState('');
@@ -63,12 +51,13 @@ function Create() {
 
     const onSubmit = (e: any) => {
         e.preventDefault();
-        mutate(formData as any);
+        setError('');
+        mutate(formData as any)
     }
 
 
-    // if (status === 'loading') return <div>Loading...</div>
-    // if (status === 'error') return <div>An error has occurred</div>
+    if (status === 'loading') return <div>Loading...</div>
+    if (status === 'error') return <div>An error has occurred</div>
     // if (status === 'success') return <div>Post created successfully</div>
 
     return (
