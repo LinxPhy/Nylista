@@ -1,6 +1,21 @@
 import './create.css'
+import axios from 'axios';
+import { useMutation } from 'react-query'
 import Error from '../../components/error';
 import { useState, useEffect } from 'react'
+
+
+const handleSubmit = async( data : any ) => {
+
+    const formData = new FormData();
+    formData.append('data', data);
+
+    try {
+        const res = await axios.post('', formData );
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 function Create() {
 
@@ -14,6 +29,7 @@ function Create() {
         status: ''
     };
 
+    const { mutate, status } = useMutation(handleSubmit);
     const [tagValue, setTagValue] = useState('');
     const [formData, setFormData] = useState(initialState);
     const [error, setError] = useState('');
@@ -29,40 +45,24 @@ function Create() {
         
     }
 
-    const handleSubmit = (e: any) => {
+    const onSubmit = (e: any) => {
         e.preventDefault();
-
-        
-        
-        setError('Please fill out all fields');
+        mutate(initialState as any);
     }
 
-    const clearErrorMessage = () => {
-        setError('');
-    }
 
-    useEffect(() => {
-        if(error){
-            setTimeout(() => {
-                setError("")
-            }, 5000)
-        }
-    }, [error])
-
+    if (status === 'loading') return <div>Loading...</div>
+    if (status === 'error') return <div>An error has occurred</div>
 
     return (
         <div className='Create'>
 
-            <form onSubmit={(e) => handleSubmit(e)} >
+            <form onSubmit={(e) => onSubmit(e)} >
 
-                <div className="ErrorMessages">
-                    {error? 
-                        <div className='error' onClick={() => clearErrorMessage()}>
-                            <Error message={error}/>
-                        </div>
-                    : null}
-                </div>
-
+                {error ? 
+                    <Error message={error}/>
+                : null}
+         
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input type="text" placeholder='Enter Your Title' className="form-control inputStyle2" maxLength={60} onChange={(e) => setFormData({...formData, title: e.target.value})} />

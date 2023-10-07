@@ -1,8 +1,11 @@
 import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Auth0Provider } from '@auth0/auth0-react'
 import App from './App.tsx'
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -14,8 +17,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           redirect_uri: window.location.origin,
         }}
         >
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </Auth0Provider>
     </BrowserRouter>
   </React.StrictMode>,
 )
+
+

@@ -9,6 +9,7 @@ import Header from './components/header'
 import Navbar from './components/navbar'
 
 
+
 function App() {
 
   const { isAuthenticated, isLoading } = useAuth0()
