@@ -4,14 +4,14 @@ const PostSchema = new mongoose.Schema({
 
     title: {
         type: String,
-        required: true,
+        required: [true, 'Title is required'],
         minlength: [1, 'Title cannot be empty'],
         maxlength: [60, 'Title cannot be more than 60 characters'],
     },
 
     content: {
         type: String,
-        required: true,
+        required: [true, 'Content is required'],
         minlength: [1, 'Content cannot be empty'],
         maxlength: [3000, 'Content cannot be more than 3000 characters'],
     },
@@ -24,12 +24,12 @@ const PostSchema = new mongoose.Schema({
 
     topic: {
         type: [String],
-        required: false,
+        required: [true, 'Please select a topic'],
     },
 
     priority: {
         type: String,
-        required: true,
+        required: false,
         enum: [ 'none', 'low', 'medium', 'high'],
     },
 
@@ -46,8 +46,8 @@ const PostSchema = new mongoose.Schema({
 
     status: {
         type: String,
-        required: true,
-        enum: ['open', 'in-progress', 'cancelled', 'completed', 'closed'],
+        required: false,
+        enum: ['new', 'open', 'in-progress', 'cancelled', 'completed', 'closed'],
     },
 
     created: {
