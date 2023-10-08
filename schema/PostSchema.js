@@ -57,6 +57,12 @@ const PostSchema = new mongoose.Schema({
         // closed = check red
     },
 
+    favourites: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+
     created: {
         type: Date,
         default: Date.now,

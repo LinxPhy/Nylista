@@ -147,3 +147,11 @@
 .icon-schedule{
     color: var(--primary_colour);
 }
+
+.bookmark-filled{
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 24 
+}

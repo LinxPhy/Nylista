@@ -21,7 +21,7 @@ const jwtCheck = auth({
 app.use(cors(
   {
     origin: '*',
-    methods: ['POST'],
+    methods: ['POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization']
   }
 ));
@@ -29,6 +29,41 @@ app.use(cors(
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.set('trust proxy', false)
+
+
+app.post('/favourites', async(req, res) => {
+
+  try{
+
+    const posts = await PostSchema.find({}).where('favourites').equals(true)
+    res.status(200).send(posts)
+
+  } catch (err){
+
+    console.log(err)
+    res.status(500).send(err)
+
+  }
+
+})
+
+app.put('/changeBookmark', async(req, res) => {
+
+  try{
+
+    const { id } = req.body
+    const post = await PostSchema.findById(id)
+    post.favourites = !post.favourites
+    await post.save()
+
+    res.status(200).send(post)
+
+  } catch (err){
+
+    res.status(500).send("Server Error")
+  }
+
+});
 
 
 app.post('/getPosts', async(req, res) => {

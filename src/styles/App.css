@@ -160,7 +160,8 @@ header{
 
 nav{
     min-width: 300px;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+    /* height: calc(100vh - 80px); */
     background-color: white;
     background-color: var(--secondary_colour); 
     border-right: 1px solid rgb(184, 184, 184);

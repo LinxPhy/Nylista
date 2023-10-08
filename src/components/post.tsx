@@ -1,12 +1,35 @@
 import '../styles/post.css'
+import axios from 'axios'
 import formatDate from './formatDate'
+import React, { useState } from 'react'
 
 const Post = (data: any) => {
+
+    const [post, setPost] = useState(data.data)
+
+    async function changeBookmark(id: string) {
+     
+        try{
+            const res = await axios.put(import.meta.env.VITE_CHANGE_BOOKMAKR_URL, { id: id })
+
+            const updatePost = post.findIndex((post: any) => post._id === id)
+            const newPost = [...post]
+            newPost[updatePost].favourites = res.data.favourites
+            setPost(newPost)
+            
+        } catch (err) {
+            console.log(err)
+        }
+        
+    }
+
+    
+
 
     return (
         <div className='posts'>
 
-            {data.data.map((post: any) => (
+            {post.map((post: any) => (
                 <div className='post' key={post._id}>
                     <div className='post_header'>
                         <h5>{post?.title}</h5>
@@ -57,10 +80,16 @@ const Post = (data: any) => {
                                 </div>
                             )}
 
-                            <div className='icon'>
-                                <span className="material-symbols-outlined">
-                                    bookmark
-                                </span>
+                            <div className='icon' onClick={() => changeBookmark(post._id)} >
+                                {post?.favourites == true ? 
+                                    <span className="material-symbols-outlined bookmark-filled">
+                                        bookmark
+                                    </span>
+                                    :
+                                    <span className="material-symbols-outlined bookmark-empty">
+                                        bookmark
+                                    </span>
+                                }
                             </div>
                         </div>
                     </div>
