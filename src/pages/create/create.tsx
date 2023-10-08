@@ -30,7 +30,7 @@ function Create() {
         topic: 'main',
         priority: 'none',
         dueDate: '',
-        status: 'new'
+        status: 'active'
     };
 
     const { mutate, data, status } = useMutation((formData: any) => handleSubmit(formData, setError));

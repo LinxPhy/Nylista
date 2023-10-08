@@ -1,0 +1,149 @@
+
+
+.posts{
+    padding: 40px 0px;
+
+}
+
+.post{
+    padding: 25px 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.post:hover{
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.post_header{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.post_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post_info_items{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.post h5{
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--primary_colour);
+    text-transform: uppercase;
+}
+
+.post .datetime{
+    font-size: 0.9em;
+    color: rgb(172, 172, 172);
+}
+
+.post_info_item{
+    font-size: 0.9em;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 5px 20px;
+    background-color: var(--secondary_colour);
+    color: var(--primary_colour);
+    border: 2px solid var(--primary_colour);
+}
+
+.post_main p{
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--primary_colour);
+    line-height: 1.5em;
+    margin-bottom: 15px;
+}
+
+.footer-icons{
+    display: flex;
+    gap: 3px;
+}
+
+.footer-icon{
+    font-size: 0.9em;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 5px 15px;
+    border: 2px solid var(--primary_colour);
+}
+
+.footer-icon-0{
+    
+}
+
+.post_footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.post_footer_icons{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.icon{
+    padding: 5px;
+    border-radius: 50%;
+    width: min-content;
+    background-color: var(--secondary_colour);
+    cursor: pointer;
+
+    color: var(--primary_colour);
+    display: flex;
+    align-items: center;
+}
+
+.icon:hover{
+    background-color: var(--primary_colour);
+    color: white;
+}
+
+.priority-low{
+    color: #75c659;
+}
+
+.priority-medium{
+    color: #f6ad35;
+}
+
+.priority-high{
+    color: #f01d30;
+}
+
+.icon{
+    /* color: rgb(156, 156, 156); */
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 24 
+}
+
+.icon-active{
+    /* color: #75c659; */
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 24 
+}
+
+.icon-schedule{
+    color: var(--primary_colour);
+}

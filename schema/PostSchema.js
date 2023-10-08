@@ -50,7 +50,11 @@ const PostSchema = new mongoose.Schema({
     status: {
         type: String,
         required: false,
-        enum: ['new', 'open', 'in-progress', 'cancelled', 'completed', 'closed'],
+        enum: ['none', 'active', 'in-progress', 'pending', 'cancelled', 'completed', 'closed'],
+        // remove new
+        // cancelled = x
+        // completed = check green
+        // closed = check red
     },
 
     created: {

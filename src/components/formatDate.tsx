@@ -13,17 +13,17 @@ function timeAgo(timestamp : any) {
     const elapsedDays = Math.floor(elapsedHours / 24);
 
     if (elapsedDays > 1) {
-        return `${elapsedDays} d ago`;
+        return `${elapsedDays}d ago`;
     } else if (elapsedDays === 1) {
-        return `1 d ago`;
+        return `1d ago`;
     } else if (elapsedHours > 1) {
-        return `${elapsedHours} h ago`;
+        return `${elapsedHours}h ago`;
     } else if (elapsedHours === 1) {
-        return `1 h ago`;
+        return `1h ago`;
     } else if (elapsedMinutes > 1) {
-        return `${elapsedMinutes} m ago`;
+        return `${elapsedMinutes}m ago`;
     } else if (elapsedMinutes === 1) {
-        return `1 m ago`;
+        return `1m ago`;
     } else {
         return `just now`;
     }
