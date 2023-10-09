@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const PostSchema = require('./schema/PostSchema');
+const TopicSchema = require('./schema/TopicsSchema');
 const app = express();
 const { auth } = require('express-oauth2-jwt-bearer');
 
@@ -100,7 +101,7 @@ app.post('/createPost', async(req, res) => {
     });
 
     await post.save()
-    res.status(201).send(post)
+    res.sendStatus(201)
 
   } catch(err){
   
@@ -111,6 +112,29 @@ app.post('/createPost', async(req, res) => {
 
 });
 
+
+app.post('/createTopic', async(req, res) => {
+
+  try{
+
+    const name = req.body
+
+    if (name < 3 || name > 20){
+      return res.status(400).send("Topic name must be between 3 and 20 characters")
+    }
+
+
+    await topic.save()
+    res.sendStatus(201)
+
+  } catch(err){
+
+    console.log(err)
+    res.status(500).send(err)
+
+  }
+
+});
 
 
 

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 const CreateTopic = () => {
@@ -32,11 +33,26 @@ const CreateTopic = () => {
 
 const TopicModal = () => {
 
+    const [topic, setTopic] = useState('')
+
+    async function createTopic() {
+
+        try {
+            const res = await axios.post(import.meta.env.VITE_CREATE_TOPIC_URL, {topic: topic})
+            window.location.reload()
+            
+        } catch (err: any) {
+            console.log(err)
+        }
+
+    }
+
+
     return(
         <div className='topic-modal'>
             <label >Topic Name</label>
-            <input type='text' className='inputStyle2' placeholder='Create Topic' />
-            <button className='buttonStyle1' style={{padding: '8px 10px'}}>+</button>
+            <input type='text' className='inputStyle2' onChange={(e) => setTopic(e.target.value)} placeholder='Create Topic' />
+            <button className='buttonStyle1' onClick={() => createTopic()} style={{padding: '8px 10px'}}>+</button>
         </div>
     )
 

@@ -9,6 +9,7 @@ async function getPosts() {
 
     try {
         const res = await axios.post(import.meta.env.VITE_GET_POSTS_URL, {})
+        console.log(res.data)
         return res.data
     } catch (err: any) {
         console.log(err)

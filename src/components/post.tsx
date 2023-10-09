@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 const Post = (data: any) => {
 
     const [post, setPost] = useState(data.data)
+    console.log(post)
 
     async function changeBookmark(id: string) {
      

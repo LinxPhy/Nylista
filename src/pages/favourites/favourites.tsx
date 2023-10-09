@@ -1,35 +1,44 @@
 import './favourites.css'
 import axios from 'axios'
 import Post from '../../components/post';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query';
 
-async function getPosts() {
 
-    try {
-        const res = await axios.post(import.meta.env.VITE_FAVOURITES_URL, {})
-        return res.data
-    } catch (err: any) {
-        console.log(err)
-    }
-}
 
 function Favourites() {
 
-    const { data, status, refetch } = useQuery('favourites', getPosts)
+    // const { data, status, refetch } = useQuery('favourites', getPosts)
+    const [favourites, setFavourites] = useState([])
 
-    // handle data changing
+    async function getPosts() {
+
+        try {
+            const res = await axios.post(import.meta.env.VITE_FAVOURITES_URL, {})
+            setFavourites(res.data)
+            console.log(res.data)
+        } catch (err: any) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
-        console.log('data changed')
-        refetch()
+        getPosts()
     }, [])
-
-    if (status === 'loading') return <div>Loading...</div>
-    if (status === 'error') return <div>An error has occurred</div>
+    
+    // if(!data) return <div>Loading...</div>
 
     return (
         <div className="Favourites">
-            <Post data={data} />
+            { favourites && (
+                <Post data={favourites} />
+            )}
+            
+            {/* { favourites.map((post: any) => (
+                <div className='post' key={post._id}>
+                    {post.title}
+                </div>
+            ))} */}
         </div>
     );
 

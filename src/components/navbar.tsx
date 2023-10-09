@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
 
     const location = useLocation();
     const [params, setParams] = useState(location.pathname.split('/')[1]);
@@ -19,6 +21,9 @@ const Navbar = () => {
                     <li className={params == '' ? 'navbar-active' : ''}>
                         <Link to={'/'} >Home</Link>
                     </li>
+                    <li className={params == 'board' ? 'navbar-active' : ''}>
+                        <Link to={'/board'} >Board</Link>
+                    </li>
                     <li className={params == 'topics' ? 'navbar-active' : ''}>
                         <Link to={'/topics'} >Topics</Link>
                     </li>
@@ -34,7 +39,7 @@ const Navbar = () => {
             <div>
                 <ul>
                     <li><Link to={'/main'}>Main</Link></li>
-                    <button className='buttonStyle1'>Create Topic</button>
+                    <button className='buttonStyle1' onClick={() => navigate('/create')}>Create Topic</button>
                 </ul>
             </div>
         </nav>
